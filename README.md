@@ -6,7 +6,7 @@ Human Activity Recognition Using Smartphones Data Set](http://archive.ics.uci.ed
 
 ## Repository Information
 This repository contains the following files
-* README.md - Overview of the dataset, repository information explaining about each file, link to zip file containing the original data used and hints to process the original data from UCI to create a new tidy dataset  
+* README.md - Overview of the dataset, repository information explaining about each file, link to zip file containing the original data used and hints to process the original data from UCI to create a new tidy dataset with useful information about users' health 
 * tidydata.txt - this file contains the newly created tidy dataset 
 * run_analysis.R - R script which describes how data was combined and processed into a tidy dataset and written into new file tidydata.txt 
 * CodeBook.md - describes contents of dataset tidy.txt (data, variables and all transformations done to the original data to generate tidy dataset)
