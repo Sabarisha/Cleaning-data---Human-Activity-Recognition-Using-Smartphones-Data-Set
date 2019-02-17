@@ -1,4 +1,4 @@
-##Part downloading the dataset into local machine
+##downloading the dataset into a local machine
 filename<-"project_dataset.zip"
 
 ##If the zip file does not exist in system then download the zip file using the url
@@ -31,11 +31,11 @@ activity_labels<-read.table("UCI HAR Dataset/activity_labels.txt")
 features<-read.table("UCI HAR Dataset/features.txt",as.is = T)
 
 
-##Combine all tables in training folder to form complete training data table
+##Combine all tables in training and test folders to form complete training data table
 trainingdata<-cbind(train_subject,train_values,train_labels)
 testdata<-cbind(test_subject,test_values,test_labels)
 
-#Combining Training and Test data to convert into 1 dataframe
+#Combining Training and Test datasets to convert into 1 dataframe
 Activitydata<-rbind(trainingdata,testdata)
 
 ##Renaming columns of Activitydata based on record information given in Dataset information by UCI
