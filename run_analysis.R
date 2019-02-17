@@ -47,7 +47,6 @@ Activitydata<-Activitydata[,grepl("mean|std|SubjectID|ActivityID",colnames(Activ
 
 ##Using Activity names instead of activity ids in the data frame
 ##Can use multiple ifelse statements with mutate function to replace the column but you have to manually match the numbers with names
-##You can merge tables Activitydata and activity_labels by activty id as unique key and then drop the column with ids and keeping only names
 ###You can use factor to import the names using activity labels in labels parameter to identify the ids used
 
 Activitydata$ActivityID<-factor(Activitydata$ActivityID,levels=activity_labels[,1],labels = activity_labels[,2])
