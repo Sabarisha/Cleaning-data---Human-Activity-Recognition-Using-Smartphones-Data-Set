@@ -49,7 +49,9 @@ Activitydata<-Activitydata[,grepl("mean|std|SubjectID|ActivityID",colnames(Activ
 ##Can use multiple ifelse statements with mutate function to replace the column but you have to manually match the numbers with names
 ###You can use factor to import the names using activity labels in labels parameter to identify the ids used
 
-Activitydata$ActivityID<-factor(Activitydata$ActivityID,levels=activity_labels[,1],labels = activity_labels[,2])
+library(dplyr)
+Activitydata$ActivityID<-as.character(factor(Activitydata$ActivityID,levels=activity_labels[,1],labels = activity_labels[,2]))
+Activitydata<-rename(Activitydata,Activity=ActivityID)
 
 
 ##RTidying the column names using information from feature_info file given
@@ -64,14 +66,17 @@ datacols<-gsub("iqr","Interquartile range",datacols)
 datacols<-gsub("arCoeff","Autoregresion Coefficient",datacols)
 datacols<-gsub("[()-]","",datacols)
 datacols<-gsub("BodyBody","Body",datacols)
+datacols<-gsub("gyro","gyroscope",datacols)
+datacols<-gsub("[Mm]ag","magnitude",datacols)
 
 colnames(Activitydata)<-datacols
 
 ##Means for each subject for each activity
-library(dplyr)
+library(tidyr)
 ActivityData_means<-Activitydata %>% 
-  group_by(SubjectID,ActivityID)%>%
-  summarise_all(mean)
+  gather(key="SignalType",value = "Value",-SubjectID,-Activity)%>%
+  group_by(SubjectID,Activity,SignalType)%>%
+  summarize(mean=mean(Value))
 
 
 ##Writing the mean values table into a new text file
